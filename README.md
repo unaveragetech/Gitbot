@@ -34,7 +34,7 @@ Below is a table showing simple benchmarks for how long each model takes to comp
 | Model                  | Completion Time | Notes                                    | Benchmarks                                    |
 |------------------------|------------------|-------------------------------------------|-----------------------------------------------|
 | Phi 3 Mini             | 2m:37s          | Fast response, suitable for simpler queries | [Phi 3 Mini Benchmark](https://github.com/unaveragetech/Gitbot/issues/17) |
-| Phi 3 Medium           | pending         | Great for more complex code explanations  |                                               |
+| Phi 3 Medium           | pending         | Great for more complex code explanations  |  [Phi3 medium](https://github.com/unaveragetech/Gitbot/issues/18)                           |
 | Llama 3 (8B)           | pending         | Good balance between speed and depth      |                                               |
 | Mistral                | pending         | Very fast but less detailed               |                                               |
 | Moondream 2            | pending         | Quickest but limited in complexity        |                                               |
