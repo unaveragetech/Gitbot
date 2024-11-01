@@ -11,6 +11,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Cache Ollama and Python dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/ollama  # Cache Ollama installation
+            ~/.cache/pip     # Cache Python packages
+          key: ${{ runner.os }}-ollama-${{ hashFiles('**/requirements.txt') }}  # Cache key based on OS and requirements
+
       - name: Install Ollama
         run: |
           echo "Installing Ollama..."
@@ -42,12 +50,6 @@ jobs:
         run: |
           echo "Running Ollama interactor for issue number ${{ github.event.issue.number }}"
           python ollama_interactor.py ${{ github.event.issue.number }}  # Pass the issue number as CLI argument
-
-      - name: Upload response as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: response
-          path: response.txt
 
       - name: Comment on the GitHub issue
         env:
