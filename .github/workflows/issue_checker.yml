@@ -54,12 +54,10 @@ jobs:
           python ollama_interactor.py ${{ github.event.issue.number }}  # Pass the issue number as CLI argument
 
       - name: Comment on the GitHub issue using GitHub CLI
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
         run: |
-          response_content=$(cat response.txt)  # Read response from file
+          response_content=$(<response.txt)  # Read response from file
           echo "Commenting on the issue with response from the model..."
-          gh auth login --with-token <<< "$GITHUB_TOKEN"  # Authenticate with GitHub CLI
+          echo "$GITHUB_TOKEN" | gh auth login --with-token  # Authenticate with GitHub CLI
           gh api \
             --method POST \
             -H "Accept: application/vnd.github+json" \
