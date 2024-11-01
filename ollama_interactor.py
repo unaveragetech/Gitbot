@@ -4,7 +4,7 @@ import json
 import requests
 import sys
 
-# Example model command mapping (ensure these match your available models)
+# Example model command mapping
 model_commands = {
     "Llama 3": "ollama run llama3",
     "Llama 3 (70B)": "ollama run llama3:70b",
@@ -48,6 +48,8 @@ def run_ollama_model(model_name, query):
     # Write the output to response.txt
     with open("response.txt", "w") as response_file:
         response_file.write(output.strip())
+    
+    print("Response written to response.txt.")  # Debugging output
 
     return output.strip()  # Return the output, stripped of leading/trailing whitespace
 
@@ -70,14 +72,13 @@ def write_response_to_github_issue(issue_number, response):
         "body": response,
     }
 
-    # Comment posting logic commented out
     # Send the comment to GitHub
-    # response = requests.post(comment_url, headers=headers, json=data)
+    response = requests.post(comment_url, headers=headers, json=data)
     
-    # if response.status_code == 201:
-    #     print("Successfully commented on the issue.")
-    # else:
-    #     print(f"Failed to comment on the issue: {response.content}")
+    if response.status_code == 201:
+        print("Successfully commented on the issue.")
+    else:
+        print(f"Failed to comment on the issue: {response.content}")
 
 def get_issue_data(issue_number):
     # Set your GitHub repository details
@@ -112,8 +113,7 @@ def main(issue_number):
         response = run_ollama_model(model_name, query)
         if response:
             print(f"Response from model: {response}")
-            # Comment on the issue with the response is commented out
-            # write_response_to_github_issue(issue_number, response) 
+            write_response_to_github_issue(issue_number, response)  # Comment on the issue with the response
         else:
             print("No response received from the model.")
     else:
