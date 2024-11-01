@@ -54,7 +54,7 @@ def run_ollama_model(model_name, query):
 def write_response_to_github_issue(issue_number, response):
     # Set your GitHub repository details
     repo_owner = "unaveragetech"  # Replace with your GitHub username
-    repo_name = "Gitbot"        # Replace with your GitHub repository name
+    repo_name = "Gitbot"           # Replace with your GitHub repository name
 
     # Define the comment URL
     comment_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues/{issue_number}/comments"
@@ -81,7 +81,7 @@ def write_response_to_github_issue(issue_number, response):
 def get_issue_data(issue_number):
     # Set your GitHub repository details
     repo_owner = "unaveragetech"  # Replace with your GitHub username
-    repo_name = "Gitbot"        # Replace with your GitHub repository name
+    repo_name = "Gitbot"           # Replace with your GitHub repository name
 
     # Define the issue URL
     issue_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues/{issue_number}"
