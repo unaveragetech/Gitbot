@@ -31,20 +31,22 @@ Gitbot uses GitHub Actions to query an LLM (Large Language Model) and respond wi
 ## Benchmarks
 Below is a table showing simple benchmarks for how long each model takes to complete a query. Note that performance may vary based on server load and the complexity of your request.
 
-| Model                  | Completion Time | Notes                          |
-|------------------------|------------------|--------------------------------|
-| Phi 3 Mini             | 2m:37s          | Fast response, suitable for simpler queries |
-| Phi 3 Medium           | pending          | Great for more complex code explanations |
-| Llama 3 (8B)           | pending          | Good balance between speed and depth |
-| Mistral                | pending          | Very fast but less detailed    |
-| Moondream 2            | pending           | Quickest but limited in complexity |
-| Neural Chat            | pending          | Effective for conversational queries |
-| Code Llama             | pending          | Optimized for coding tasks     |
-| LLaVA                  | pending          | Ideal for visual language tasks |
-| Solar                  | pending          | Takes longer, but high detail  |
+| Model                  | Completion Time | Notes                                    | Benchmarks                                    |
+|------------------------|------------------|-------------------------------------------|-----------------------------------------------|
+| Phi 3 Mini             | 2m:37s          | Fast response, suitable for simpler queries | [Phi 3 Mini Benchmark](https://github.com/unaveragetech/Gitbot/issues/17) |
+| Phi 3 Medium           | pending         | Great for more complex code explanations  |                                               |
+| Llama 3 (8B)           | pending         | Good balance between speed and depth      |                                               |
+| Mistral                | pending         | Very fast but less detailed               |                                               |
+| Moondream 2            | pending         | Quickest but limited in complexity        |                                               |
+| Neural Chat            | pending         | Effective for conversational queries      |                                               |
+| Code Llama             | pending         | Optimized for coding tasks                |                                               |
+| LLaVA                  | pending         | Ideal for visual language tasks           |                                               |
+| Solar                  | pending         | Takes longer, but high detail             |                                               |
+
 
 ### Example Benchmark
-For a completed query example, see [this issue](https://github.com/unaveragetech/Gitbot/issues/17). It ran `Phi 3 Medium` and completed in **2 minutes and 37 seconds**, providing correct code with a detailed explanation.
+For a completed query example, see [this issue](https://github.com/unaveragetech/Gitbot/issues/17). It ran `Phi 3 Mini` and completed in **2 minutes and 37 seconds**, providing correct code with a detailed explanation. this same code will be repeated for all models over time and added to the tbale i will also keep all tests and add thoes to the table as 
+[Phi 3 Mini Benchmark](https://github.com/unaveragetech/Gitbot/issues/17)
 
 ## Additional Notes
 - **Caching**: GitHub Actions uses caching to speed up subsequent runs by storing dependencies.
