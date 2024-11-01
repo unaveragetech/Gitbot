@@ -11,15 +11,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Cache Ollama and Python dependencies
+      - name: Cache Python packages
         uses: actions/cache@v2
         with:
           path: |
-            ~/.cache/ollama  # Cache Ollama installation
-            ~/.cache/pip     # Cache Python packages
-          key: ${{ runner.os }}-ollama-${{ hashFiles('**/requirements.txt') }}  # Cache key based on OS and requirements
+            ~/.cache/pip
+            ~/.local
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
-            ${{ runner.os }}-ollama- # Fallback to previous caches if exact match not found
+            ${{ runner.os }}-pip-
 
       - name: Install Ollama
         run: |
@@ -54,21 +54,14 @@ jobs:
           python ollama_interactor.py ${{ github.event.issue.number }}  # Pass the issue number as CLI argument
 
       - name: Comment on the GitHub issue using GitHub CLI
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Set the GH_TOKEN for GitHub CLI
         run: |
           response_content=$(<response.txt)  # Read response from file
           echo "Commenting on the issue with response from the model..."
-          # Use the GITHUB_TOKEN directly for authentication
           gh api \
             --method POST \
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             /repos/unaveragetech/Gitbot/issues/${{ github.event.issue.number }}/comments \
             -f "body=$response_content"
-
-      - name: Save cache after the run
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/.cache/ollama  # Cache Ollama installation
-            ~/.cache/pip     # Cache Python packages
-          key: ${{ runner.os }}-ollama-${{ hashFiles('**/requirements.txt') }}  # Same key as before
