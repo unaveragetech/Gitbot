@@ -1,0 +1,4 @@
+PyGithub
+requests
+# To install Ollama, run the following command in your terminal:
+# curl -fsSL https://ollama.com/install.sh | sh
