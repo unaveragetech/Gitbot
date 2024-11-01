@@ -42,3 +42,21 @@ jobs:
         run: |
           echo "Running Ollama interactor for issue number ${{ github.event.issue.number }}"
           python ollama_interactor.py ${{ github.event.issue.number }}  # Pass the issue number as CLI argument
+
+      - name: Upload response as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: response
+          path: response.txt
+
+      - name: Comment on the GitHub issue
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token for authentication
+        run: |
+          response_content=$(cat response.txt)  # Read response from file
+          echo "Commenting on the issue with response from the model..."
+          curl -X POST \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d "{\"body\": \"$response_content\"}" \
+            "https://api.github.com/repos/unaveragetech/Gitbot/issues/${{ github.event.issue.number }}/comments"
