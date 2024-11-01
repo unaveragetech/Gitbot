@@ -1,6 +1,7 @@
 import os
 import subprocess
 import json
+import requests
 
 # Example model command mapping (ensure these match your available models)
 model_commands = {
@@ -43,19 +44,78 @@ def run_ollama_model(model_name, query):
         print(f"Error running model: {error}")
         return None
 
+    # Write the output to response.txt
+    with open("response.txt", "w") as response_file:
+        response_file.write(output.strip())
+
     return output.strip()  # Return the output, stripped of leading/trailing whitespace
 
+def write_response_to_github_issue(issue_number, response):
+    # Set your GitHub repository details
+    repo_owner = "unaveragetech"  # Replace with your GitHub username
+    repo_name = "Gitbot"        # Replace with your GitHub repository name
+    
+    # Define the comment URL
+    comment_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues/{issue_number}/comments"
+    
+    # Prepare headers with the GitHub token for authentication
+    headers = {
+        "Authorization": f"token {os.getenv('GITHUB_TOKEN')}",
+        "Accept": "application/vnd.github.v3+json",
+    }
+    
+    # Prepare the payload
+    data = {
+        "body": response,
+    }
+
+    # Send the comment to GitHub
+    response = requests.post(comment_url, headers=headers, json=data)
+    
+    if response.status_code == 201:
+        print("Successfully commented on the issue.")
+    else:
+        print(f"Failed to comment on the issue: {response.content}")
+
+def get_issue_data(issue_number):
+    # Set your GitHub repository details
+    repo_owner = "unaveragetech"  # Replace with your GitHub username
+    repo_name = "Gitbot"        # Replace with your GitHub repository name
+
+    # Define the issue URL
+    issue_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues/{issue_number}"
+
+    # Prepare headers with the GitHub token for authentication
+    headers = {
+        "Authorization": f"token {os.getenv('GITHUB_TOKEN')}",
+        "Accept": "application/vnd.github.v3+json",
+    }
+
+    # Fetch issue data
+    response = requests.get(issue_url, headers=headers)
+    if response.status_code == 200:
+        issue_data = response.json()
+        model_name = issue_data['title']  # Assuming model name is in the issue title
+        query = issue_data['body']         # Query is the body of the issue
+        return model_name, query
+    else:
+        print(f"Failed to fetch issue data: {response.content}")
+        return None, None
+
 def main(issue_number):
-    # Load issue data (mocking this for example purposes)
-    model_name = "Llama 3"  # Replace with the actual model name from the issue
-    query = "What color is the sky?"  # Replace with the actual query from the issue body
-
     print(f"Running Ollama interactor for issue number {issue_number}")
-    response = run_ollama_model(model_name, query)
+    model_name, query = get_issue_data(issue_number)  # Get actual data from the issue
 
-    if response:
-        print(f"Response from model: {response}")
+    if model_name and query:
+        response = run_ollama_model(model_name, query)
+        if response:
+            print(f"Response from model: {response}")
+            write_response_to_github_issue(issue_number, response)  # Comment on the issue with the response
+        else:
+            print("No response received from the model.")
+    else:
+        print("Could not retrieve model name and query from the issue.")
 
 if __name__ == "__main__":
-    issue_number = 4  # Example issue number
+    issue_number = 4  # Example issue number (replace with actual)
     main(issue_number)
