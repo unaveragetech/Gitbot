@@ -1,13 +1,8 @@
 import os
-import sys
 import subprocess
-from github import Github
+import json
 
-# GitHub personal access token
-GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
-g = Github(GITHUB_TOKEN)
-
-# Dictionary mapping model names to their Ollama run commands
+# Example model command mapping (ensure these match your available models)
 model_commands = {
     "Llama 3": "ollama run llama3",
     "Llama 3 (70B)": "ollama run llama3:70b",
@@ -26,58 +21,41 @@ model_commands = {
 }
 
 def run_ollama_model(model_name, query):
-    # Get the command for the specified model
-    command = model_commands.get(model_name)
+    # Normalize the model name to lower case
+    normalized_model_name = model_name.lower()
+    command = next((command for name, command in model_commands.items() if name.lower() == normalized_model_name), None)
 
     if command is None:
         print(f"Model '{model_name}' not found. Please specify a valid model.")
         return None
 
+    # Split the command into a list for subprocess
+    command_parts = command.split()  # This will split the command into parts
+    command_parts.append(query)  # Append the query to the command
+
     # Start the Ollama model and get the response
-    process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    process = subprocess.Popen(command_parts, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     
-    # Send the query to the model
-    output, error = process.communicate(input=query)
+    # Wait for the output and error
+    output, error = process.communicate()
 
     if process.returncode != 0:
         print(f"Error running model: {error}")
         return None
-    
-    return output
 
-def write_response_to_file(model_name, query, response):
-    filename = f"{model_name.replace(' ', '_')}_response.txt"
-    with open(filename, 'w') as file:
-        file.write(f"Model Name: {model_name}\n")
-        file.write(f"Query: {query}\n")
-        file.write(f"Response: {response}")
-
-def respond_to_issue(issue, response):
-    issue.create_comment(response)
+    return output.strip()  # Return the output, stripped of leading/trailing whitespace
 
 def main(issue_number):
-    # Get the issue from GitHub
-    repo = g.get_repo("unaveragetech/Gitbot")  # replace with your username and repo name
-    issue = repo.get_issue(issue_number)
+    # Load issue data (mocking this for example purposes)
+    model_name = "Llama 3"  # Replace with the actual model name from the issue
+    query = "What color is the sky?"  # Replace with the actual query from the issue body
 
-    # Parse model name and query from the issue title and body
-    model_name = issue.title.strip()  # Get model name from the title
-    query = issue.body.strip()         # Get query from the body
-
-    # Run the Ollama model
+    print(f"Running Ollama interactor for issue number {issue_number}")
     response = run_ollama_model(model_name, query)
 
     if response:
-        write_response_to_file(model_name, query, response)
-        respond_to_issue(issue, response)
-    else:
-        print("Failed to get a response from the model.")
+        print(f"Response from model: {response}")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python ollama_interactor.py <issue_number>")
-        sys.exit(1)
-
-    issue_number = int(sys.argv[1])
+    issue_number = 4  # Example issue number
     main(issue_number)
-
