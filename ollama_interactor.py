@@ -57,7 +57,7 @@ def respond_to_issue(issue, response):
 
 def main(issue_number):
     # Get the issue from GitHub
-    repo = g.get_repo("your_username/your_repo_name")  # replace with your username and repo name
+    repo = g.get_repo("unaveragetech/Gitbot")  # replace with your username and repo name
     issue = repo.get_issue(issue_number)
 
     # Parse model name and query from the issue title and body
