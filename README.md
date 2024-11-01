@@ -23,3 +23,11 @@ Open an issue --> put the model name in the title
 type your query into the issue body 
 
 go watch a 5min yt video XD free ai is slow ai 
+
+depending on the chosen model it will be faster or slower 
+simple bunchmark 
+https://github.com/unaveragetech/Gitbot/issues/17
+
+completed in :
+running phi3 
+correct code and explination 
