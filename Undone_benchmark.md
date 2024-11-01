@@ -16,19 +16,64 @@ This document serves to clarify the current status of the benchmark for the Larg
 
 ## Next Steps
 
-1. **Finalize Benchmark Design**: Complete the framework for what will be measured and how.
-  
-2. **Complete Data Collection**: Gather all required datasets to ensure a comprehensive evaluation.
+```markdown
+# LLM Benchmark Instructions
 
-3. **Establish Testing Protocols**: Create clear and replicable testing procedures.
+## Overview
 
-4. **Execute Benchmarking**: Once the above steps are complete, begin the benchmarking process.
+This benchmark is designed to evaluate Large Language Models (LLMs) by gauging their responses to a specific Python script containing errors. Each model will be tested to identify issues and propose fixes. The results will be recorded, including the model name, test details, completion time, and any additional notes.
 
-5. **Report Findings**: Prepare a detailed report once sufficient data and results are available.
+## Benchmark Details
+
+### Script to Test
+
+Below is the Python script that models will be evaluated against:
+
+```python
+def calculate_area(radius):
+    pi = 3.14
+    area = pi * radius * radius
+    return area
+
+def main():
+    r = input("Enter the radius: ")
+    area = calculate_area(r)
+    print("The area of the circle is: " + area)
+
+if __name__ == "__main__":
+    main()
+```
+
+### Instructions for Models
+
+1. **Identify Errors**: Each model must list all the errors found in the script.
+2. **Provide Fixes**: After identifying the errors, the model should rewrite the code correctly.
+
+### Expected Output Format
+
+The output from each model should be structured as follows:
+
+- **Errors Found**: 
+    - Error 1: Description
+    - Error 2: Description
+    - (and so on...)
+
+- **Corrected Code**:
+    ```python
+    # Corrected version of the script goes here
+    ```
+
+## Results Storage
+
+All runs, identified issues, and proposed fixes will be documented in a table format in the README. The table will include the following columns:
+
+| Model Name | Test Description | Completion Time | Notes |
+|------------|------------------|------------------|-------|
+| Model A    | Error list and fix for provided script | X seconds | Additional notes if necessary |
+| Model B    | Error list and fix for provided script | Y seconds | Additional notes if necessary |
 
 ## Conclusion
 
-At this stage, it is crucial to recognize that the benchmark for the LLM is not yet completed. Stakeholders will be updated as progress is made, and a timeline for completion will be provided once the initial phases are finalized.
+This benchmark aims to assess the capabilities of various LLMs in error detection and code correction. Ensure that all outputs are clear and concise, as they will be used to evaluate the performance of each model. 
 
-For any inquiries or further information, please contact the project lead.
-
+```
