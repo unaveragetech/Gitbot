@@ -40,4 +40,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          echo "Running Ollama interactor for issue number ${{ github.event.issue.number }}"
           python ollama_interactor.py ${{ github.event.issue.number }}
