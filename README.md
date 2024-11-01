@@ -37,7 +37,7 @@ Below is a table showing simple benchmarks for how long each model takes to comp
 | Phi 3 Medium           | 5m:20s	         | Great for more complex code explanations    | [Phi3 medium Benchmark](https://github.com/unaveragetech/Gitbot/issues/18)  |
 | Llama 3 (8B)           | 3m:20s	         | Good balance between speed and depth        | [Llama 3 8b Benchmark](https://github.com/unaveragetech/Gitbot/issues/19)   |
 | Mistral                | 2m:41s	         | Very fast but less detailed                 | [Mistral Benchmark](https://github.com/unaveragetech/Gitbot/issues/20 )     |
-| Moondream 2            | pending         | Quickest but limited in complexity          | [Unfinished Benchmark](Undone_benchmark.md)  |
+| Moondream 2            | pending         | Quickest but limited in complexity          | [Unable to test without gpu](Undone_benchmark.md)  |
 | Neural Chat            | pending         | Effective for conversational queries        |  [Unfinished Benchmark](Undone_benchmark.md) |
 | Code Llama             | pending         | Optimized for coding tasks                  |  [Unfinished Benchmark](Undone_benchmark.md) |
 | LLaVA                  | pending         | Ideal for visual language tasks             |   [Unfinished Benchmark](Undone_benchmark.md)|
