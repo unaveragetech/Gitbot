@@ -45,8 +45,10 @@ Below is a table showing simple benchmarks for how long each model takes to comp
 
 
 ### Example Benchmark
-For a completed query example, see [this issue](https://github.com/unaveragetech/Gitbot/issues/17). It ran `Phi 3 Mini` and completed in **2 minutes and 37 seconds**, providing correct code with a detailed explanation. this same code will be repeated for all models over time and added to the tbale i will also keep all tests and add thoes to the table as 
+For a completed query example, see [this issue](https://github.com/unaveragetech/Gitbot/issues/17). It ran `Phi 3 Mini` and completed in **2 minutes and 37 seconds**, providing correct code with a detailed explanation. this same code will be repeated for all models over time and added to the Table i will also keep all tests and add thoes to the table as 
 [Phi 3 Mini Benchmark](https://github.com/unaveragetech/Gitbot/issues/17)
+
+this will also cache all models so its easier to run and takes less time on average 
 
 ## Additional Notes
 - **Caching**: GitHub Actions uses caching to speed up subsequent runs by storing dependencies.
