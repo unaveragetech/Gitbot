@@ -2,6 +2,7 @@ import os
 import subprocess
 import json
 import requests
+import sys
 
 # Example model command mapping (ensure these match your available models)
 model_commands = {
@@ -52,8 +53,8 @@ def run_ollama_model(model_name, query):
 
 def write_response_to_github_issue(issue_number, response):
     # Set your GitHub repository details
-    repo_owner = "your_username"  # Replace with your GitHub username
-    repo_name = "your_repo"        # Replace with your GitHub repository name
+    repo_owner = "unaveragetech"  # Replace with your GitHub username
+    repo_name = "Gitbot"        # Replace with your GitHub repository name
 
     # Define the comment URL
     comment_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues/{issue_number}/comments"
@@ -79,8 +80,8 @@ def write_response_to_github_issue(issue_number, response):
 
 def get_issue_data(issue_number):
     # Set your GitHub repository details
-    repo_owner = "your_username"  # Replace with your GitHub username
-    repo_name = "your_repo"        # Replace with your GitHub repository name
+    repo_owner = "unaveragetech"  # Replace with your GitHub username
+    repo_name = "Gitbot"        # Replace with your GitHub repository name
 
     # Define the issue URL
     issue_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues/{issue_number}"
@@ -117,5 +118,10 @@ def main(issue_number):
         print("Could not retrieve model name and query from the issue.")
 
 if __name__ == "__main__":
-    issue_number = 4  # Example issue number (replace with actual)
+    # Read the issue number from command line arguments
+    if len(sys.argv) != 2:
+        print("Usage: python ollama_interactor.py <issue_number>")
+        sys.exit(1)
+
+    issue_number = sys.argv[1]  # Get the issue number from the command line
     main(issue_number)
