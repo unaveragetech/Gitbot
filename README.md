@@ -35,7 +35,7 @@ Below is a table showing simple benchmarks for how long each model takes to comp
 |------------------------|------------------|-------------------------------------------|-----------------------------------------------|
 | Phi 3 Mini             | 2m:37s          | Fast response, suitable for simpler queries | [Phi 3 Mini Benchmark](https://github.com/unaveragetech/Gitbot/issues/17) |
 | Phi 3 Medium           | 5m:20s	         | Great for more complex code explanations  |  [Phi3 medium Benchmark](https://github.com/unaveragetech/Gitbot/issues/18)  |
-| Llama 3 (8B)           | pending         | Good balance between speed and depth      |                                               |
+| Llama 3 (8B)           | 3m:20s	         | Good balance between speed and depth      | [Llama 3 8b Benchmark](https://github.com/unaveragetech/Gitbot/issues/19)    |
 | Mistral                | pending         | Very fast but less detailed               |                                               |
 | Moondream 2            | pending         | Quickest but limited in complexity        |                                               |
 | Neural Chat            | pending         | Effective for conversational queries      |                                               |
