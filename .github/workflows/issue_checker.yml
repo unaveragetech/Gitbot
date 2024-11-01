@@ -1,75 +1,28 @@
-name: Issue Checker and Model Runner
+name: Respond to Ollama Query
 
 on:
   issues:
     types: [opened]
 
 jobs:
-  process_issue:
+  respond:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set Up Python
+      - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: '3.8'
 
-      - name: Install Requirements
+      - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Extract Model and Query
-        id: extract_info
+      - name: Run the Ollama interactor
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          MODEL_NAME="${{ github.event.issue.title }}"
-          QUERY="${{ github.event.issue.body }}"
-          ISSUE_NUMBER="${{ github.event.issue.number }}"
-
-          echo "Model Name: $MODEL_NAME"
-          echo "Query: $QUERY"
-          echo "Issue Number: $ISSUE_NUMBER"
-
-          echo "MODEL_NAME=$MODEL_NAME" >> $GITHUB_ENV
-          echo "QUERY=$QUERY" >> $GITHUB_ENV
-          echo "ISSUE_NUMBER=$ISSUE_NUMBER" >> $GITHUB_ENV
-
-      - name: Run the Selected Model
-        id: run_model
-        run: |
-          echo "Running model: $MODEL_NAME"
-          echo "Using query: $QUERY"
-          RESPONSE=$(ollama run "$MODEL_NAME" --query "$QUERY" 2>&1)
-
-          echo "Response: $RESPONSE"
-          echo "RESPONSE=$RESPONSE" >> $GITHUB_ENV
-
-      - name: Append to CSV
-        run: |
-          python <<EOF
-          import pandas as pd
-
-          file_path = "issues_log.csv"
-          data = {
-              "Issue Number": ["${{ env.ISSUE_NUMBER }}"],
-              "Question": ["${{ env.QUERY }}"],
-              "Response": ["${{ env.RESPONSE }}"]
-          }
-
-          df = pd.DataFrame(data)
-          try:
-              existing_df = pd.read_csv(file_path)
-              df = pd.concat([existing_df, df], ignore_index=True)
-          except FileNotFoundError:
-              pass
-
-          df.to_csv(file_path, index=False)
-          EOF
-
-      - name: Commit and Push CSV
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          file_pattern: issues_log.csv
-          commit_message: "Update issues log with new response"
+          python ollama_interactor.py ${{ github.event.issue.number }}
