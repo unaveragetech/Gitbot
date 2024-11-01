@@ -31,18 +31,18 @@ Gitbot uses GitHub Actions to query an LLM (Large Language Model) and respond wi
 ## Benchmarks
 Below is a table showing simple benchmarks for how long each model takes to complete a query. Note that performance may vary based on server load and the complexity of your request.
 
-| Model                  | Completion Time | Notes                                        | Benchmarks                                    |              Pass/Fail
-|------------------------|------------------|--------------------------------------------|------------------------------------------------------------------------------- |
-| Phi 3 Mini             | 2m:37s          | Fast response, suitable for simpler queries | [Phi 3 Mini Benchmark](https://github.com/unaveragetech/Gitbot/issues/17)   | Pass
-| Phi 3 Medium           | 5m:20s	         | Great for more complex code explanations    | [Phi3 medium Benchmark](https://github.com/unaveragetech/Gitbot/issues/18)  | pass
-| Llama 3 (8B)           | 3m:20s	         | Good balance between speed and depth        | [Llama 3 8b Benchmark](https://github.com/unaveragetech/Gitbot/issues/19)   | pass
-| Mistral                | 2m:41s	         | Very fast but less detailed                 | [Mistral Benchmark](https://github.com/unaveragetech/Gitbot/issues/20 )     | pass
-| Moondream 2            | 1m:24s         | Quickest but limited in complexity        | [Unable to test without gpu](https://github.com/unaveragetech/Gitbot/issues/21)| Fail
-| Neural Chat            | 3m:6s         | Effective for conversational queries        | [Neural Chat Benchmark](https://github.com/unaveragetech/Gitbot/issues/22)   | Pass
-| Code Llama             | 3m:3s	         | Optimized for coding tasks                  |  [Code Llama Benchmark](https://github.com/unaveragetech/Gitbot/issues/23) | pass
-| Llama 3 (70b)          | 1m:38s        | Large model by meta good for code generation |  [Too large for codespaces](https://github.com/unaveragetech/Gitbot/issues/25)| Fail
-| Solar                  | pending         | Takes longer, but high detail               |   [Unfinished Benchmark](Undone_benchmark.md)|
-| LLaVA                  | pending         | Ideal for visual language tasks             |   [Unfinished Benchmark](Undone_benchmark.md)|
+| Model                  | Completion Time | Notes                                        | Benchmarks                                      | Pass/Fail |
+|------------------------|------------------|----------------------------------------------|------------------------------------------------|-----------|
+| Phi 3 Mini             | 2m:37s           | Fast response, suitable for simpler queries  | [Phi 3 Mini Benchmark](https://github.com/unaveragetech/Gitbot/issues/17) | Pass      |
+| Phi 3 Medium           | 5m:20s           | Great for more complex code explanations     | [Phi 3 Medium Benchmark](https://github.com/unaveragetech/Gitbot/issues/18) | Pass      |
+| Llama 3 (8B)          | 3m:20s           | Good balance between speed and depth         | [Llama 3 8B Benchmark](https://github.com/unaveragetech/Gitbot/issues/19) | Pass      |
+| Mistral                | 2m:41s           | Very fast but less detailed                  | [Mistral Benchmark](https://github.com/unaveragetech/Gitbot/issues/20) | Pass      |
+| Moondream 2            | 1m:24s           | Quickest but limited in complexity           | [Unable to test without GPU](https://github.com/unaveragetech/Gitbot/issues/21) | Fail      |
+| Neural Chat            | 3m:06s           | Effective for conversational queries         | [Neural Chat Benchmark](https://github.com/unaveragetech/Gitbot/issues/22) | Pass      |
+| Code Llama             | 3m:03s           | Optimized for coding tasks                   | [Code Llama Benchmark](https://github.com/unaveragetech/Gitbot/issues/23) | Pass      |
+| Llama 3 (70B)         | 1m:38s           | Large model by Meta, good for code generation | [Too large for Codespaces](https://github.com/unaveragetech/Gitbot/issues/25) | Fail      |
+| Solar                  | pending          | Takes longer, but high detail                | [Unfinished Benchmark](Undone_benchmark.md)   |           |
+| LLaVA                  | pending          | Ideal for visual language tasks              | [Unfinished Benchmark](Undone_benchmark.md)   |           |
 
 
 ### Example Benchmark
