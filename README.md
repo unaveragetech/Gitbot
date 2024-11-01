@@ -38,8 +38,8 @@ Below is a table showing simple benchmarks for how long each model takes to comp
 | Llama 3 (8B)           | 3m:20s	         | Good balance between speed and depth        | [Llama 3 8b Benchmark](https://github.com/unaveragetech/Gitbot/issues/19)   |
 | Mistral                | 2m:41s	         | Very fast but less detailed                 | [Mistral Benchmark](https://github.com/unaveragetech/Gitbot/issues/20 )     |
 | Moondream 2            | 1m:24s         | Quickest but limited in complexity          | [Unable to test without gpu](https://github.com/unaveragetech/Gitbot/issues/21)  |
-| Neural Chat            | 3m:6s         | Effective for conversational queries        | [Neural Chat Benchmark](https://github.com/unaveragetech/Gitbot/issues/22) |
-| Code Llama             | pending         | Optimized for coding tasks                  |  [Unfinished Benchmark](Undone_benchmark.md) |
+| Neural Chat            | 3m:6s         | Effective for conversational queries        | [Neural Chat Benchmark](https://github.com/unaveragetech/Gitbot/issues/22)   |
+| Code Llama             | 3m:3s	         | Optimized for coding tasks                  |  [Code Llama Benchmark](https://github.com/unaveragetech/Gitbot/issues/23) |
 | LLaVA                  | pending         | Ideal for visual language tasks             |   [Unfinished Benchmark](Undone_benchmark.md)|
 | Solar                  | pending         | Takes longer, but high detail               |   [Unfinished Benchmark](Undone_benchmark.md)|
 
