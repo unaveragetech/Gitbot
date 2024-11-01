@@ -16,3 +16,10 @@ use actions to query an llm
 | Llama 2 Uncensored     | 7B         | 3.8GB  | `ollama run llama2-uncensored` |
 | LLaVA                  | 7B         | 4.5GB  | `ollama run llava`           |
 | Solar                  | 10.7B      | 6.1GB  | `ollama run solar`           |
+
+
+Open an issue --> put the model name in the title 
+
+type your query into the issue body 
+
+go watch a 5min yt video XD free ai is slow ai 
