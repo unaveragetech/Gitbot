@@ -1,5 +1,16 @@
 # Gitbot
-use actions to query an llm
+
+Gitbot uses GitHub Actions to query an LLM (Large Language Model) and respond with useful insights or code snippets. The action is designed to run specific models from Ollama, with different commands based on the model specifications.
+
+## How It Works
+1. **Open an Issue**: To make a request, open a new issue in this repository.
+2. **Model Name in Title**: Specify the model you want to use in the issue title (e.g., `Phi 3 Medium`).
+3. **Query in the Body**: Type your query or question in the issue body.
+4. **Wait for the Response**: GitHub Actions will run the specified model and reply to your issue. Be patient—depending on the model, this could take a few minutes.
+
+> *Tip*: Since free AI resources can be slow, consider watching a quick video or taking a break while waiting!
+
+## Available Models and Commands
 | Model                  | Parameters | Size   | Command                       |
 |------------------------|------------|--------|-------------------------------|
 | Llama 3                | 8B         | 4.7GB  | `ollama run llama3`          |
@@ -17,17 +28,27 @@ use actions to query an llm
 | LLaVA                  | 7B         | 4.5GB  | `ollama run llava`           |
 | Solar                  | 10.7B      | 6.1GB  | `ollama run solar`           |
 
+## Benchmarks
+Below is a table showing simple benchmarks for how long each model takes to complete a query. Note that performance may vary based on server load and the complexity of your request.
 
-Open an issue --> put the model name in the title 
+| Model                  | Completion Time | Notes                          |
+|------------------------|------------------|--------------------------------|
+| Phi 3 Mini             | 2m:37s          | Fast response, suitable for simpler queries |
+| Phi 3 Medium           | pending          | Great for more complex code explanations |
+| Llama 3 (8B)           | pending          | Good balance between speed and depth |
+| Mistral                | pending          | Very fast but less detailed    |
+| Moondream 2            | pending           | Quickest but limited in complexity |
+| Neural Chat            | pending          | Effective for conversational queries |
+| Code Llama             | pending          | Optimized for coding tasks     |
+| LLaVA                  | pending          | Ideal for visual language tasks |
+| Solar                  | pending          | Takes longer, but high detail  |
 
-type your query into the issue body 
+### Example Benchmark
+For a completed query example, see [this issue](https://github.com/unaveragetech/Gitbot/issues/17). It ran `Phi 3 Medium` and completed in **2 minutes and 37 seconds**, providing correct code with a detailed explanation.
 
-go watch a 5min yt video XD free ai is slow ai 
+## Additional Notes
+- **Caching**: GitHub Actions uses caching to speed up subsequent runs by storing dependencies.
+- **Customization**: You can extend the list of models or adjust the commands as needed.
+- **Limitations**: Response time may be impacted by server availability, and more extensive models may require more processing time.
 
-depending on the chosen model it will be faster or slower 
-simple bunchmark 
-https://github.com/unaveragetech/Gitbot/issues/17
-
-completed in :
-running phi3 
-correct code and explination 
+---
