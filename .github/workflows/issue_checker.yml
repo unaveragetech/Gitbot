@@ -57,7 +57,7 @@ jobs:
         run: |
           response_content=$(<response.txt)  # Read response from file
           echo "Commenting on the issue with response from the model..."
-          echo "$GITHUB_TOKEN" | gh auth login --with-token  # Authenticate with GitHub CLI
+          # Use the GITHUB_TOKEN directly for authentication
           gh api \
             --method POST \
             -H "Accept: application/vnd.github+json" \
