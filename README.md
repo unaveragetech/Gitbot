@@ -1,4 +1,5 @@
 # Gitbot
+- **[Buy me a coffee.. maybe help pay for these projects?](https://www.paypal.com/donate/?hosted_button_id=2RXWCC28FJ79N)**
 
 Gitbot uses GitHub Actions to query an LLM (Large Language Model) and respond with useful insights or code snippets. The action is designed to run specific models from Ollama, with different commands based on the model specifications.
 
@@ -108,4 +109,4 @@ all times in this section are related to the benchmark from [Benchmark informati
 - **Customization**: You can extend the list of models or adjust the commands as needed.
 - **Limitations**: Response time may be impacted by server availability, and larger models may require more processing time.
 - **Actions Cost Money** Feel free to help me pay any fees or just get me a coffee ty in advance
-- **[Buy me a coffee.. maybe help pay for these projects?](https://www.paypal.com/donate/?hosted_button_id=2RXWCC28FJ79N)**
+
