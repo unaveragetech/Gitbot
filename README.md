@@ -8,7 +8,15 @@ Gitbot uses GitHub Actions to query an LLM (Large Language Model) and respond wi
 3. **Query in the Body**: Type your query or question in the issue body.
 4. **Wait for the Response**: GitHub Actions will run the specified model and reply to your issue. Be patient—depending on the model, this could take a few minutes.
 
-> *Tip*: Since free AI resources can be slow, consider watching a quick video or taking a break while waiting!
+
+
+- **Tip**: Free AI resources can sometimes be slow, so consider watching a quick video or taking a break while you wait!
+  
+- **Tip**: Keep your specific use case in mind and select a model that aligns best with it.
+  
+- **Tip**: The structure and content of your query matter. Provide clear instructions and context for the response you’re looking for.
+  
+- **Tip**: Treat your query as a prompt. Be precise and technical about your needs, and remember to include any relevant context that the AI might not inherently know.
 
 ## Available Models and Commands
 | Model                  | Parameters | Size   | Command                       |
