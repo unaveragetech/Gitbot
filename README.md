@@ -1,5 +1,7 @@
 # Gitbot
 - **[Buy me a coffee.. maybe help pay for these projects?](https://www.paypal.com/donate/?hosted_button_id=2RXWCC28FJ79N)**
+- **when your fork the repo delete the config file yours will take its place**
+- **Speady forkflow** read the repo select your model -open issue enter model as title--> write your repo query in the body----> wait for your response comment (Have fun)
 
 Gitbot uses GitHub Actions to query an LLM (Large Language Model) and respond with useful insights or code snippets. The action is designed to run specific models from Ollama, with different commands based on the model specifications.
 
