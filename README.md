@@ -59,14 +59,12 @@ For a completed query example, see [this issue](https://github.com/unaveragetech
 ## Model Use Cases
 
 ### Recommended Models for Different Use Cases
-
-Here’s the revised section with specific details from the tables, including response times and pass/fail status for each model:
-
 ---
 
 ## Model Use Cases
 
 ### Recommended Models for Different Use Cases
+all times in this section are related to the benchmark from [Benchmark information on how the test is configured this test will not be changed and will be used to test all llm's that are added to the system](Undone_benchmark.md)
 
 1. **Simple Queries**:
    - **Phi 3 Mini**: Fastest response at **2m:37s**, suitable for straightforward requests. (Pass)
