@@ -23,10 +23,21 @@ model_commands = {
     "LLaVA": "ollama run llava",
     "Solar": "ollama run solar",
 }
- #Load configuration from config.json
-def load_config():
-    with open('config.json', 'r') as config_file:
-        return json.load(config_file)
+
+def get_issue_data(issue_number):
+    # Load config.json
+    try:
+        with open("config.json", "r") as file:
+            config = json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError):
+        raise Exception("Failed to load config.json. Make sure the file exists and is valid JSON.")
+
+    # Access values from the config
+    repo_owner = config.get("repo_owner")
+    repo_name = config.get("repo_name")
+    
+    if not repo_owner or not repo_name:
+        raise Exception("repo_owner or repo_name is not defined in config.json.")
 
 
 def run_ollama_model(model_name, query):
