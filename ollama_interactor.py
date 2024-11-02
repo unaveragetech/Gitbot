@@ -4,6 +4,8 @@ import json
 import requests
 import sys
 
+
+
 # Example model command mapping
 model_commands = {
     "Llama 3": "ollama run llama3",
@@ -21,6 +23,11 @@ model_commands = {
     "LLaVA": "ollama run llava",
     "Solar": "ollama run solar",
 }
+ #Load configuration from config.json
+def load_config():
+    with open('config.json', 'r') as config_file:
+        return json.load(config_file)
+
 
 def run_ollama_model(model_name, query):
     # Normalize the model name to lower case
@@ -53,11 +60,15 @@ def run_ollama_model(model_name, query):
 
     return output.strip()  # Return the output, stripped of leading/trailing whitespace
 
+# Function to write a response to a GitHub issue
 def write_response_to_github_issue(issue_number, response):
-    # Set your GitHub repository details
-    repo_owner = "unaveragetech"  # Replace with your GitHub username
-    repo_name = "Gitbot"           # Replace with your GitHub repository name
-
+    # Load configuration
+    config = load_config()
+    
+    # Set your GitHub repository details from config.json
+    repo_owner = config["repo_owner"]  # Replace with your key for the owner
+    repo_name = config["repo_name"]    # Replace with your key for the repository name
+    
     # Define the comment URL
     comment_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues/{issue_number}/comments"
     
@@ -82,8 +93,8 @@ def write_response_to_github_issue(issue_number, response):
 
 def get_issue_data(issue_number):
     # Set your GitHub repository details
-    repo_owner = "unaveragetech"  # Replace with your GitHub username
-    repo_name = "Gitbot"           # Replace with your GitHub repository name
+    repo_owner = config["repo_owner"]  # Replace with your GitHub username
+    repo_name = config["repo_name"]           # Replace with your GitHub repository name
 
     # Define the issue URL
     issue_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues/{issue_number}"
