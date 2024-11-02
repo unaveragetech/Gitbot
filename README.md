@@ -9,15 +9,17 @@ Gitbot uses GitHub Actions to query an LLM (Large Language Model) and respond wi
 4. **Wait for the Response**: GitHub Actions will run the specified model and reply to your issue. Be patient—depending on the model, this could take a few minutes.
 
 
-
-- **Tip**: Free AI resources can sometimes be slow, so consider watching a quick video or taking a break while you wait!
+```
+- **Tip.1**: Free AI resources can sometimes be slow, so consider watching a quick video or taking a break while you wait!
   
-- **Tip**: Keep your specific use case in mind and select a model that aligns best with it.
+- **Tip.2**: Keep your specific use case in mind and select a model that aligns best with it.
   
-- **Tip**: The structure and content of your query matter. Provide clear instructions and context for the response you’re looking for.
-  
-- **Tip**: Treat your query as a prompt. Be precise and technical about your needs, and remember to include any relevant context that the AI might not inherently know.
-
+- **Tip.3**: The structure and content of your query matter. Provide clear instructions and context for the response you’re looking for.
+```
+ ``` 
+-Tip.4: Treat your query as a prompt. Be precise and technical about your needs, and remember to include any relevant context that the AI might not inherently know. This `concept of "inherently knowing" is crucial, as general knowledge can vary widely based on context and specific domains. What might seem like common knowledge to you may `not be recognized by the AI, especially if it lacks specific details or nuances related to your topic. Therefore, providing additional information can significantly `enhance the AI's ability to generate accurate and relevant responses.
+`For instance, if you're asking for help with a technical problem, include relevant details like the software version, specific error messages, or the steps you've already `tried. The more context you provide, the better the AI can tailor its response to your unique situation.
+```
 ## Available Models and Commands
 | Model                  | Parameters | Size   | Command                       |
 |------------------------|------------|--------|-------------------------------|
