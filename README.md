@@ -108,4 +108,4 @@ all times in this section are related to the benchmark from [Benchmark informati
 - **Customization**: You can extend the list of models or adjust the commands as needed.
 - **Limitations**: Response time may be impacted by server availability, and larger models may require more processing time.
 - **Actions Cost Money** Feel free to help me pay any fees or just get me a coffee ty in advance
-- **https://www.paypal.com/donate/?hosted_button_id=TS349XKZ9M8TS**
+- **https://www.paypal.com/donate/?hosted_button_id=2RXWCC28FJ79N**
