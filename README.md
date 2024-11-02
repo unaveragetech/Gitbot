@@ -28,8 +28,8 @@ Gitbot uses GitHub Actions to query an LLM (Large Language Model) and respond wi
 | LLaVA                  | 7B         | 4.5GB  | `ollama run llava`           |
 | Solar                  | 10.7B      | 6.1GB  | `ollama run solar`           |
 
-Here's a revised version of your table, along with a new section that explains which models to use for different use cases.
-
+---
+[suggest a new addition](https://github.com/unaveragetech/Gitbot/issues/33)
 ---
 
 ## Benchmarks
