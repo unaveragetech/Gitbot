@@ -4,8 +4,6 @@ import json
 import requests
 import sys
 
-
-
 # Example model command mapping
 model_commands = {
     "Llama 3": "ollama run llama3",
@@ -24,39 +22,61 @@ model_commands = {
     "Solar": "ollama run solar",
 }
 
-def get_issue_data(issue_number):
-    # Load config.json
+def load_config():
+    """Load the configuration from config.json."""
     try:
         with open("config.json", "r") as file:
             config = json.load(file)
     except (FileNotFoundError, json.JSONDecodeError):
         raise Exception("Failed to load config.json. Make sure the file exists and is valid JSON.")
-
-    # Access values from the config
-    repo_owner = config.get("repo_owner")
-    repo_name = config.get("repo_name")
     
-    if not repo_owner or not repo_name:
-        raise Exception("repo_owner or repo_name is not defined in config.json.")
+    # Validate that essential fields are present
+    if "repo_owner" not in config or "repo_name" not in config:
+        raise Exception("config.json must include 'repo_owner' and 'repo_name'.")
+    
+    return config
 
+def get_issue_data(issue_number):
+    """Fetch issue data from GitHub."""
+    config = load_config()  # Load configuration
+    repo_owner = config["repo_owner"]
+    repo_name = config["repo_name"]
+
+    # Define the issue URL
+    issue_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues/{issue_number}"
+    
+    # Prepare headers with the GitHub token for authentication
+    headers = {
+        "Authorization": f"token {os.getenv('GITHUB_TOKEN')}",
+        "Accept": "application/vnd.github.v3+json",
+    }
+    
+    # Fetch issue data
+    response = requests.get(issue_url, headers=headers)
+    if response.status_code == 200:
+        issue_data = response.json()
+        model_name = issue_data['title']  # Assuming model name is in the issue title
+        query = issue_data['body']        # Query is the body of the issue
+        return model_name, query
+    else:
+        print(f"Failed to fetch issue data: {response.content}")
+        return None, None
 
 def run_ollama_model(model_name, query):
-    # Normalize the model name to lower case
+    """Run the Ollama model with the given model name and query."""
     normalized_model_name = model_name.lower()
-    command = next((command for name, command in model_commands.items() if name.lower() == normalized_model_name), None)
-
+    command = next((cmd for name, cmd in model_commands.items() if name.lower() == normalized_model_name), None)
+    
     if command is None:
         print(f"Model '{model_name}' not found. Please specify a valid model.")
         return None
 
-    # Split the command into a list for subprocess
-    command_parts = command.split()  # This will split the command into parts
-    command_parts.append(query)  # Append the query to the command
+    command_parts = command.split()  # Split the command into parts
+    command_parts.append(query)      # Append the query to the command
 
     # Start the Ollama model and get the response
     process = subprocess.Popen(command_parts, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     
-    # Wait for the output and error
     output, error = process.communicate()
 
     if process.returncode != 0:
@@ -67,19 +87,15 @@ def run_ollama_model(model_name, query):
     with open("response.txt", "w") as response_file:
         response_file.write(output.strip())
     
-    print("Response written to response.txt.")  # Debugging output
+    print("Response written to response.txt.")
+    return output.strip()
 
-    return output.strip()  # Return the output, stripped of leading/trailing whitespace
-
-# Function to write a response to a GitHub issue
 def write_response_to_github_issue(issue_number, response):
-    # Load configuration
+    """Write the model's response as a comment on the GitHub issue."""
     config = load_config()
-    
-    # Set your GitHub repository details from config.json
-    repo_owner = config["repo_owner"]  # Replace with your key for the owner
-    repo_name = config["repo_name"]    # Replace with your key for the repository name
-    
+    repo_owner = config["repo_owner"]
+    repo_name = config["repo_name"]
+
     # Define the comment URL
     comment_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues/{issue_number}/comments"
     
@@ -90,62 +106,34 @@ def write_response_to_github_issue(issue_number, response):
     }
     
     # Prepare the payload
-    data = {
-        "body": response,
-    }
-
+    data = {"body": response}
+    
     # Send the comment to GitHub
     response = requests.post(comment_url, headers=headers, json=data)
-    
     if response.status_code == 201:
         print("Successfully commented on the issue.")
     else:
         print(f"Failed to comment on the issue: {response.content}")
 
-def get_issue_data(issue_number):
-    # Set your GitHub repository details
-    repo_owner = config["repo_owner"]  # Replace with your GitHub username
-    repo_name = config["repo_name"]           # Replace with your GitHub repository name
-
-    # Define the issue URL
-    issue_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/issues/{issue_number}"
-
-    # Prepare headers with the GitHub token for authentication
-    headers = {
-        "Authorization": f"token {os.getenv('GITHUB_TOKEN')}",
-        "Accept": "application/vnd.github.v3+json",
-    }
-
-    # Fetch issue data
-    response = requests.get(issue_url, headers=headers)
-    if response.status_code == 200:
-        issue_data = response.json()
-        model_name = issue_data['title']  # Assuming model name is in the issue title
-        query = issue_data['body']         # Query is the body of the issue
-        return model_name, query
-    else:
-        print(f"Failed to fetch issue data: {response.content}")
-        return None, None
-
 def main(issue_number):
+    """Main function to run the Ollama interactor."""
     print(f"Running Ollama interactor for issue number {issue_number}")
-    model_name, query = get_issue_data(issue_number)  # Get actual data from the issue
-
+    model_name, query = get_issue_data(issue_number)
+    
     if model_name and query:
         response = run_ollama_model(model_name, query)
         if response:
             print(f"Response from model: {response}")
-            write_response_to_github_issue(issue_number, response)  # Comment on the issue with the response
+            write_response_to_github_issue(issue_number, response)
         else:
             print("No response received from the model.")
     else:
         print("Could not retrieve model name and query from the issue.")
 
 if __name__ == "__main__":
-    # Read the issue number from command line arguments
     if len(sys.argv) != 2:
         print("Usage: python ollama_interactor.py <issue_number>")
         sys.exit(1)
 
-    issue_number = sys.argv[1]  # Get the issue number from the command line
+    issue_number = sys.argv[1]
     main(issue_number)
