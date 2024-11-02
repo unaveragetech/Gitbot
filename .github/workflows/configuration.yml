@@ -21,9 +21,9 @@ jobs:
       - name: Get Repo Information
         id: repo-info
         run: |
-          # Extract the repository name and username from the GITHUB_REPOSITORY environment variable
+          # Extract the repository name and the username of the person who owns the repo
           echo "REPO_NAME=$(basename $GITHUB_REPOSITORY)" >> $GITHUB_ENV
-          echo "USER_NAME=$(cut -d'/' -f1 <<< $GITHUB_REPOSITORY)" >> $GITHUB_ENV
+          echo "USER_NAME=$GITHUB_ACTOR" >> $GITHUB_ENV
 
       - name: Update config.json
         run: |
@@ -42,12 +42,11 @@ jobs:
           # Use Node.js to modify or add the repo_name and user_name fields
           node -e "
           const fs = require('fs');
-          const config = JSON.parse(fs.readFileSync('$CONFIG_FILE', 'utf8'));
+          const config = fs.existsSync('$CONFIG_FILE') ? JSON.parse(fs.readFileSync('$CONFIG_FILE', 'utf8')) : {};
           config.repo_name = '$REPO_NAME';
           config.repo_owner = '$USER_NAME';
           fs.writeFileSync('$CONFIG_FILE', JSON.stringify(config, null, 2));
           "
-
       - name: Commit Changes
         run: |
           # Configure git user
