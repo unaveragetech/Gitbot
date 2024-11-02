@@ -41,7 +41,7 @@ Below is a table showing simple benchmarks for how long each model takes to comp
 | Neural Chat            | 3m:06s           | Effective for conversational queries         | [Neural Chat Benchmark](https://github.com/unaveragetech/Gitbot/issues/22) | Pass      |
 | Code Llama             | 3m:03s           | Optimized for coding tasks                   | [Code Llama Benchmark](https://github.com/unaveragetech/Gitbot/issues/23) | Pass      |
 | Llama 3 (70B)         | 1m:38s           | Large model by Meta, good for code generation | [Too large for Codespaces](https://github.com/unaveragetech/Gitbot/issues/25) | Fail      |
-| Solar                  | pending          | Takes longer, but high detail                | [Unfinished Benchmark](Undone_benchmark.md)   |           |
+| Solar                  | pending          | Takes longer, but high detail                | [Solar Benchmark](https://github.com/unaveragetech/Gitbot/issues/26)   |   pass        |
 | LLaVA                  | pending          | Ideal for visual language tasks              | [Unfinished Benchmark](Undone_benchmark.md)   |           |
 
 
