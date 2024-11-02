@@ -1,35 +1,62 @@
-name: Your Action Name
+name: Update Config JSON
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
-  run-script:
+  update-config:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Set up Node.js (needed for JSON manipulation)
+        uses: actions/setup-node@v3
         with:
-          python-version: '3.x'
+          node-version: '16'
 
-      - name: Load config.json
-        id: load-config
+      - name: Get Repo Information
+        id: repo-info
         run: |
-          import json
-          with open('config.json') as f:
-              config = json.load(f)
-          print(f"::set-output name=repo_owner::{config['repo_owner']}")
-          print(f"::set-output name=repo_name::{config['repo_name']}")
+          # Extract the repository name and username from the GITHUB_REPOSITORY environment variable
+          echo "REPO_NAME=$(basename $GITHUB_REPOSITORY)" >> $GITHUB_ENV
+          echo "USER_NAME=$(cut -d'/' -f1 <<< $GITHUB_REPOSITORY)" >> $GITHUB_ENV
 
-      - name: Run your script
-        env:
-          repo_owner: ${{ steps.load-config.outputs.repo_owner }}
-          repo_name: ${{ steps.load-config.outputs.repo_name }}
+      - name: Update config.json
         run: |
-          # Your script here, using repo_owner and repo_name
+          # Define the path to config.json
+          CONFIG_FILE="config.json"
+          
+          # Check if config.json exists; if not, create an empty JSON object
+          if [ ! -f "$CONFIG_FILE" ]; then
+            echo "{}" > $CONFIG_FILE
+          fi
+          
+          # Use environment variables to update the file
+          REPO_NAME=$REPO_NAME
+          USER_NAME=$USER_NAME
+
+          # Use Node.js to modify or add the repo_name and user_name fields
+          node -e "
+          const fs = require('fs');
+          const config = JSON.parse(fs.readFileSync('$CONFIG_FILE', 'utf8'));
+          config.repo_name = '$REPO_NAME';
+          config.repo_owner = '$USER_NAME';
+          fs.writeFileSync('$CONFIG_FILE', JSON.stringify(config, null, 2));
+          "
+
+      - name: Commit Changes
+        run: |
+          # Configure git user
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Stage and commit changes
+          git add config.json
+          git commit -m "Update config.json with repo and user info" || echo "No changes to commit"
+          
+          # Push changes back to the main branch
+          git push
