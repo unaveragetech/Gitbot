@@ -1,4 +1,7 @@
 # Gitbot
+
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Funaveragetech%2FGitbot%2Fbadge%3Fref%3Dmain&style=for-the-badge)](https://actions-badge.atrox.dev/unaveragetech/Gitbot/goto?ref=main)
+
 - **[Buy me a coffee.. maybe help pay for these projects?](https://www.paypal.com/donate/?hosted_button_id=2RXWCC28FJ79N)**
 - **when your fork the repo delete the config file yours will take its place**
 - **Speady forkflow** read the repo select your model -open issue enter model as title--> write your repo query in the body----> wait for your response comment (Have fun)
