@@ -72,8 +72,72 @@ All runs, identified issues, and proposed fixes will be documented in a table fo
 | Model A    | Error list and fix for provided script | X seconds | Additional notes if necessary |
 | Model B    | Error list and fix for provided script | Y seconds | Additional notes if necessary |
 
-## Conclusion
+## Fact based benchmark
 
-This benchmark aims to assess the capabilities of various LLMs in error detection and code correction. Ensure that all outputs are clear and concise, as they will be used to evaluate the performance of each model. 
+---
 
+# Fact-Based Reasoning Benchmark
+
+## Instructions for the Model
+- You will be presented with a series of factual questions.
+- Your response should begin with "Yes" or "No" (if applicable), followed by a clear and concise explanation that elaborates on your answer.
+- Ensure each response is accurate and provides context or necessary details to fully explain the fact.
+
+---
+
+## Fact-Converted Question Table
+| **Fact** | **Converted Question** | **Answer** |
+|-----------|------------------------|------------|
+| Australia is wider than the moon | Is Australia wider than the moon? | Yes, Australia is wider than the moon. Australia is almost 4,000 km in diameter from east to west, while the moon is 3,400 km in diameter. |
+| Cows are sacred in Hinduism | Are cows considered sacred in Hinduism? | Yes, cows are considered sacred in Hinduism. Their products, such as milk, urine, and dung, are highly valued, and eating cow meat is taboo. |
+| Avocados are technically a fruit | Are avocados technically classified as a fruit? | Yes, avocados are technically a fruit. They meet the botanical criteria for a berry, having a large seed and fleshy pulp. |
+| Bats are the only flying mammals | Are bats the only mammals that can truly fly? | Yes, bats are the only flying mammals. While flying squirrels can glide, they do not have the ability to sustain powered flight. |
+| Earth's magnetic pole moves westward | Does Earth's magnetic north pole move over time? | Yes, Earth's magnetic north pole moves, unlike the geographic North Pole, which remains fixed. |
+| Forests produce rainfall | Do forests contribute to rainfall production? | Yes, forests produce rainfall. Trees release water vapor through a process called transpiration, forming clouds and contributing to rainfall. |
+| Ketchup was once sold as medicine | Was ketchup once sold as medicine? | Yes, in the 1830s, tomato ketchup was sold as a medicine to treat ailments like diarrhea, jaundice, and indigestion. |
+| Nutmeg is a hallucinogen | Can consuming nutmeg cause hallucinations? | Yes, nutmeg can cause hallucinations, convulsions, seizures, and a type of "nutmeg psychosis" when consumed in large quantities. |
+| The moon experiences moonquakes | Does the moon experience moonquakes? | Yes, the moon experiences moonquakes, some of which are strong enough to move furniture. The moon's rock continues to vibrate longer than Earth's rock during earthquakes. |
+
+---
+
+## Full Benchmark Questions
+1. **Is Australia wider than the moon?**
+   - **Expected Answer**: "Yes, Australia is wider than the moon. Australia is almost 4,000 km in diameter from east to west, while the moon is 3,400 km in diameter."
+
+2. **Are cows considered sacred in Hinduism?**
+   - **Expected Answer**: "Yes, cows are considered sacred in Hinduism. Their products, such as milk, urine, and dung, are highly valued, and eating cow meat is taboo."
+
+3. **Are avocados technically classified as a fruit?**
+   - **Expected Answer**: "Yes, avocados are technically a fruit. They meet the botanical criteria for a berry, having a large seed and fleshy pulp."
+
+4. **Are bats the only mammals that can truly fly?**
+   - **Expected Answer**: "Yes, bats are the only flying mammals. While flying squirrels can glide, they do not have the ability to sustain powered flight."
+
+5. **Does Earth's magnetic north pole move over time?**
+   - **Expected Answer**: "Yes, Earth's magnetic north pole moves, unlike the geographic North Pole, which remains fixed."
+
+6. **Do forests contribute to rainfall production?**
+   - **Expected Answer**: "Yes, forests produce rainfall. Trees release water vapor through a process called transpiration, forming clouds and contributing to rainfall."
+
+7. **Was ketchup once sold as medicine?**
+   - **Expected Answer**: "Yes, in the 1830s, tomato ketchup was sold as a medicine to treat ailments like diarrhea, jaundice, and indigestion."
+
+8. **Can consuming nutmeg cause hallucinations?**
+   - **Expected Answer**: "Yes, nutmeg can cause hallucinations, convulsions, seizures, and a type of 'nutmeg psychosis' when consumed in large quantities."
+
+9. **Does the moon experience moonquakes?**
+   - **Expected Answer**: "Yes, the moon experiences moonquakes, some of which are strong enough to move furniture. The moon's rock continues to vibrate longer than Earth's rock during earthquakes."
+
+---
+
+## External Example
+- **Question**: "Is Mount Everest the highest mountain in the world?"
+- **How the Model Should Answer**: 
+  - **Example Answer**: "Yes, Mount Everest is the highest mountain in the world. It stands at 8,848 meters (29,029 feet) above sea level, making it the tallest peak globally."
+
+This external example illustrates how the model should format its response, providing a comprehensive yet straightforward explanation. 
+
+---
+
+This file structure will ensure that the LLM’s responses are organized, factually accurate, and formatted in a consistent manner for easy assessment and evaluation.
 ```
