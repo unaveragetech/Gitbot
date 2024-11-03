@@ -1,6 +1,6 @@
 # Gitbot
 
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Funaveragetech%2FGitbot%2Fbadge%3Fref%3Dmain&style=for-the-badge)](https://actions-badge.atrox.dev/unaveragetech/Gitbot/goto?ref=main)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Funaveragetech%2FGitbot%2Fbadge%3Fref%3Dmain&style=for-the-badge)](https://actions-badge.atrox.dev/unaveragetech/Gitbot/goto?ref=main) ---will show the last run and if it failed---
 
 - **[Buy me a coffee.. maybe help pay for these projects?](https://www.paypal.com/donate/?hosted_button_id=2RXWCC28FJ79N)**
 - **when your fork the repo delete the config file yours will take its place**
