@@ -99,8 +99,13 @@ All runs, identified issues, and proposed fixes will be documented in a table fo
 | The moon experiences moonquakes | Does the moon experience moonquakes? | Yes, the moon experiences moonquakes, some of which are strong enough to move furniture. The moon's rock continues to vibrate longer than Earth's rock during earthquakes. |
 
 ---
-
+```
 ## Full Benchmark Questions
+
+- You will be presented with a series of factual questions.
+- Your response should begin with "Yes" or "No" (if applicable), followed by a clear and concise explanation that elaborates on your answer.
+- Ensure each response is accurate and provides context or necessary details to fully explain the fact.
+
 1. **Is Australia wider than the moon?**
    - **Expected Answer**: "Yes, Australia is wider than the moon. Australia is almost 4,000 km in diameter from east to west, while the moon is 3,400 km in diameter."
 
@@ -127,7 +132,7 @@ All runs, identified issues, and proposed fixes will be documented in a table fo
 
 9. **Does the moon experience moonquakes?**
    - **Expected Answer**: "Yes, the moon experiences moonquakes, some of which are strong enough to move furniture. The moon's rock continues to vibrate longer than Earth's rock during earthquakes."
-
+```
 ---
 
 ## External Example
