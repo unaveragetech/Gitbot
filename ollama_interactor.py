@@ -21,6 +21,7 @@ model_commands = {
     "Llama 2 Uncensored": "ollama run llama2-uncensored",
     "LLaVA": "ollama run llava",
     "Solar": "ollama run solar",
+    "macro-1o":"ollama run marco-o1:7b-fp16",
 }
 
 def load_config():
