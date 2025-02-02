@@ -22,6 +22,7 @@ model_commands = {
     "LLaVA": "ollama run llava",
     "Solar": "ollama run solar",
     "Macro-1o":"ollama run marco-o1:7b-fp16",
+    "Minslayer_v2_basic":"ollama run Beelzebub4883/Mineslayer_V2_basic",
 }
 
 def load_config():
