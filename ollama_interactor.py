@@ -9,6 +9,7 @@ import sys
 model_commands = {
     "Llama 3": "ollama run llama3",
     "Llama 3 (70B)": "ollama run llama3:70b",
+    "Llama 3 (8B)": "ollama run llama3:8b",
     "Phi 3 Mini": "ollama run phi3",
     "Phi 3 Medium": "ollama run phi3:medium",
     "Gemma (2B)": "ollama run gemma:2b",
@@ -23,6 +24,24 @@ model_commands = {
     "Solar": "ollama run solar",
     "Macro-1o":"ollama run marco-o1:7b-fp16",
     "Minslayer_v2_basic":"ollama run Beelzebub4883/Mineslayer_V2_basic",
+    "IBM Granite (2B)": "ollama run granite:2b",
+    "DeepSeek R1 (1.5B)": "ollama run deepseek-r1:1.5b",
+    "Llama 2 (7B)": "ollama run llama2:7b",
+    "Phi 3 (7B)": "ollama run phi3:7b",
+    "ChatGPT (3.5B)": "ollama run chatgpt:3.5b",
+    "GPT-neo (2.7B)": "ollama run gpt-neo:2.7b",
+    "GPT-J (6B)": "ollama run gpt-j:6b",
+    "T5 (3B)": "ollama run t5:3b",
+    "BERT (large)": "ollama run bert:large",
+    "XLNet (large)": "ollama run xlnet:large",
+    "RoBERTa (large)": "ollama run roberta:large",
+    "DistilBERT (base)": "ollama run distilbert:base",
+    "Transformer-XL (large)": "ollama run transformer-xl:large",
+    "ERNIE (large)": "ollama run ernie:large",
+    "ELECTRA (large)": "ollama run electra:large",
+    "ALBERT (xlarge)": "ollama run albert:xlarge",
+    "Reformer (large)": "ollama run reformer:large",
+    "Funnel-Transformer (large)": "ollama run funnel-transformer:large"
 }
 
 def load_config():
