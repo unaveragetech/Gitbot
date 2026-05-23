@@ -7,6 +7,7 @@ import sys
 
 # Example model command mapping
 model_commands = {
+    "her_jessup": "ollama run Beelzebub4883/h-e-r-living-model:Beta",
     "Llama 3": "ollama run llama3",
     "Llama 3 (70B)": "ollama run llama3:70b",
     "Llama 3 (8B)": "ollama run llama3:8b",
